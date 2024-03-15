@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	imageSrc: ImageMetadata;
+    fullName: string;
+    location: string;
+    description: string;
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+}
+
+const { imageSrc, fullName, location, description, facebook, twitter, linkedin, github } = Astro.props;
+
+---
+
+<>
+    <Image src={imageSrc} alt="headshot" class="aspect-square h-24 w-24 rounded-full mx-auto" />
+    <h2 class="text-2xl uppercase text-center">{fullName}</h2>
+    <span class="text-sm text-center uppercase text-emerald-600 dark:text-emerald-400">
+        {location}
+    </span>
+    <span class="py-4 text-center italic">{description}</span>
+    
+    <div class="flex flex-col space-y-4 w-80">
+        {facebook && <button >Facebook</button>}
+        {twitter && <button>Twitter / X</button>}
+        {linkedin && <button>LinkedIn</button>}
+        {github && <a target="_blank" href={github}><button class="w-full">GitHub</button></a>}
+    </div>
+</>
