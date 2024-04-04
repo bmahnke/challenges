@@ -1,0 +1,15 @@
+---
+import '../style/output.css';
+import IconLinkButton from './IconLinkButton.astro';
+
+const year = new Date().getFullYear()
+---
+
+<footer class="flex justify-between items-center">
+    <p>&copy; {year} Brett Mahnke</p>
+    
+
+    <p>
+        Built with <a href="https://astro.build/">Astro</a> in GA!
+    </p>
+</footer>

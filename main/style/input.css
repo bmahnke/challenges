@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        --color-primary: 25 127 210;
+        --color-secondary: 217 121 49;
+
+        --color-primary-light: 67 138 214;
+        --color-primary-lighter: 154 183 231;
+        --color-primary-lightest: 206 218 243;
+        --color-primary-dark: 0 71 145;
+        --color-primary-darker: 0 50 121;
+        --color-primary-darkest: 0 22 85;
+    }
+}
+
 a {
-    @apply underline text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-700
+    @apply text-primary hover:text-primary-dark dark:text-primary-light dark:hover:text-primary-lightest
 }
 
 button {
-    @apply p-1 border-2 sm:rounded-sm md:rounded-md border-emerald-600 hover:border-emerald-800 dark:border-emerald-400 dark:border-emerald-700
+    @apply p-1 border-2 sm:rounded-sm md:rounded-md
 }

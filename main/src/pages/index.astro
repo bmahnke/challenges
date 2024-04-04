@@ -1,20 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Skill from '../components/Skill.astro';
+import IconButtonLink from '../components/IconLinkButton.astro';
+import Carousel from '../components/Carousel.astro';
+
+const files = import.meta.glob<string>('/src/svg/skills/**/*.svg', {
+	eager: true,
+	query: '?raw',
+	import: 'default'
+});
+
+const skillList = Object.keys(files).map(s => s.split('/').pop()).filter(s => !!s) as string[];
 
 ---
 
-<Layout title="Welcome to Astro.">
-	<main class="">
-		<h1 >Welcome to Challenges</h1>
-		<p class="py-4">
-			Links to specific challenges
-		</p>
-		<ul role="list" class="link-card-grid">
-			<li><a href="/challenges/social-media-connect-challenge/">Social Media Connect</a>.</li>
-		</ul>
-	</main>
+<Layout title="Welcome to my website.">
+	
+	<div class="flex flex-col mt-10 sm:mt-14 md:mt-18 lg:mt-20">
+		<div class="grid grid-cols-1 md:grid-cols-2">
+			<div class="flex flex-col">
+				<p class="text-md text-slate-500 ml-2">hello, and welcome! my name is</p>
+				<h1 class="text-5xl mx-0 md:text-6xl lg:text-7xl xl:text-8xl">Brett Mahnke</h1>
+				<p class="text-xl md:text-2xl lg:text-3-xl ml-2 my-8">i am <b>full stack developer</b> with a focus on the backend, automation and scalability.</p>				
+			</div>
+			<div>
+				<div class="flex flex-col space-y-4">
+					<span class="text-lg">My Time Zone</span>
+					<time class="text-xl font-bold" id="time-zone-info-display"></time>
+				</div>
+				
+				<p class="mt-16 text-lg">The tools of my trade:</p>
+				<div class="width-full justify-between flex items-center">
+					<Carousel>
+						{ skillList.map(s => {
+							return <Skill skill={s.split('.').shift() as string} />
+						})}				
+					</Carousel>
+				</div>				
+			</div>
+		</div>
+
+
+	</div>
 </Layout>
 
-<style>
+<script>
+	const dateFormat = new Intl.DateTimeFormat('en-us', { hour: "2-digit", minute: "2-digit", second: "numeric", timeZoneName: "short", timeZone: "America/New_York" })
+	const timeEle = document.getElementById("time-zone-info-display");
+	function updateTime() {
+		if (timeEle) {
+			const v = dateFormat.format(new Date())
+			timeEle.innerText = v
+			timeEle.setAttribute("datetime", v)
+		}
+	}
 
-</style>
+	updateTime()
+	setInterval(updateTime, 1000);
+</script>

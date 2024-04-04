@@ -3,6 +3,32 @@
 ```sh
 npx tailwindcss -i ./style/input.css -o ./src/style/output.css --watch
 ```
+# Insperation
+
+* [SCALVINI MARMI](https://www.scalvinimarmi.it/en/)
+* [COPILOT](https://www.copilotcptl.com/)
+* [ARTECK](https://www.arteck-design.fr/)
+* [RRE](https://rre.com/)
+* [ConnorJarret](https://www.connorjarrett.com/)
+* [Memal Creative](https://memalcreative.com/)
+* [Gianmarco](https://gianmarco.xyz/)
+* [JohnDoe](https://sanity-nextjs-site.vercel.app/)
+
+
+### What's to Like
+
+* Copilot -> The navigation and the footer area for PH/LI/EM
+* Gianmarco -> Generally like the simplicity of it. 
+  - shows his current time (neat feature)
+
+* JohnDoe -> Gets the relevant info accross well 
+  - like the tetris style square svg
+
+* Other things I saw
+  - based out of "some weather thing (could|hot|muggy)" <city> <state> (super script the temp)
+  - use the logos for skills and tools
+
+* SVGS: [svgs](https://www.svgrepo.com/svg/448234/linkedin)
 
 # Astro Starter Kit: Basics
 

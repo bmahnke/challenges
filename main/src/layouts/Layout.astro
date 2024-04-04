@@ -5,6 +5,8 @@ interface Props {
 
 const { title } = Astro.props;
 
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
 import '../style/output.css';
 
 ---
@@ -19,7 +21,11 @@ import '../style/output.css';
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-gray-100 dark:bg-gray-950 text-gray-950 dark:text-gray-100 p-4">
-		<slot />
+	<body class="bg-gray-100 dark:bg-slate-950 text-gray-950 dark:text-gray-100 mx-auto py-4 px-4 sm:px-16 md:px-32 lg:px-44 xl:px-56 2xl:px-72">
+		<Nav />
+		<main class="py-4">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>

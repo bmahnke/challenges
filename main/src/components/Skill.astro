@@ -1,0 +1,43 @@
+---
+import Icon from "./Icon.astro";
+interface Props {
+	skill: string;
+}
+
+const { skill } = Astro.props;
+
+const hidden = ['astro', 'astro-dark', 'github', 'github-dark', 'turbo', 'turbo-dark', 'stimulus', 'stimulus-dark']
+const textColor : { django: string } = {
+    django: 'text-primary'
+}
+
+let c = textColor[skill as keyof { django: string }] || ''
+
+---
+
+<div data-skill={skill} class=`m-2 max-w-16 max-h-16 relative group ${c} ${hidden.includes(skill) ? 'icon-hidden hidden' : ''}`>
+    <Icon icon=`skills/${skill}` myAttributes={{class: "w-16 h-16"}} />
+    <div class="absolute shadow-lg hidden group-hover:block bg-[#333] text-white font-semibold px-3 py-[6px] text-[13px] right-0 left-0 mx-auto w-max -top-10 rounded before:w-4 before:h-4 before:rotate-45 before:bg-[#333] before:absolute before:z-[-1] before:-bottom-1 before:left-0  before:right-0 before:mx-auto">
+        {skill.split('-').shift()}
+    </div>
+</div>
+
+<script>
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    const forceDark = document.querySelector("html")?.classList.contains("dark")
+    const forceLight = document.querySelector("html")?.classList.contains("light")
+    const dark = query.matches;
+
+    console.log(`forceDark: ${forceDark}, forceLight: ${forceLight}, preferdark: ${dark}`)
+    if (!dark) {
+        document.querySelector("[data-skill='github']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='turbo']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='stimulus']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='astro']")?.classList.toggle("hidden")
+    } else {
+        document.querySelector("[data-skill='github-dark']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='stimulus-dark']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='turbo-dark']")?.classList.toggle("hidden")
+        document.querySelector("[data-skill='astro-dark']")?.classList.toggle("hidden")
+    }
+</script>

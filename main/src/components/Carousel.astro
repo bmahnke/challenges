@@ -1,0 +1,90 @@
+---
+
+---
+
+<div id="carousel" class="carousel flex space-x-4 w-full justify-between">
+    <slot />
+</div>
+
+<script>
+
+    function inRange(check:number, low : number, high: number) {
+        return check >= low && check <= high;
+    }
+    // set index and transition delay
+    let index = 15;
+    const transitionDelay = 2000;
+
+    // get div containing the slides
+    let slideContainer = document.getElementById('carousel') as HTMLDivElement;
+    let slides = Array.from(slideContainer.querySelectorAll<HTMLDivElement>("[data-skill]:not(.hidden)"));
+
+    // set transition delay for slides
+    for (let slide of slides) {
+        slide.style.transition = `all ${transitionDelay/1000}s linear`;
+    }
+
+    // show the first slide
+    showSlide(index);
+
+    // show a specific slide
+    function showSlide(slideNumber: number) {
+        console.log("showing slide: ", slideNumber)
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("order-last", false)
+            slide.style.display = slideNumber == i ? "flex" : "none";
+        });
+
+        // need to pull slides from the front of the array
+        if (((slideNumber + 2) - slides.length) > 0){
+            slides.slice(0, Math.abs((slideNumber + 2) - slides.length)).forEach((slide, idx) => {
+                console.log("showing slide: ", slide.getAttribute('data-skill'));
+                slide.style.display = "flex";
+                slide.classList.add("order-last")
+            })
+        } else {
+            slides.slice(slideNumber, slideNumber + 2).forEach((slide, idx) => {
+                console.log("showing slide: ", idx)
+                slide.style.display = "flex";
+            });
+        }
+
+        if ((slideNumber - 2) < 0) {
+            var b = (slideNumber - 2) + slides.length;
+            slides.slice(b, b + 2).forEach((slide, idx) => {
+                console.log("showing slide (order-last): ", idx);
+                slide.style.display = "flex";
+                slide.classList.add("order-last")
+            })
+        } else {
+            slides.slice(slideNumber - 2, slideNumber).forEach((slide, idx) => {
+                console.log("showing slide: ", idx);
+                slide.style.display = "flex";
+            })
+        }
+
+        // next index
+        index++;
+
+        // go back to 0 if at the end of slides
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+    }
+
+    // transition to next slide every x seconds
+    setInterval (() => showSlide(index), transitionDelay);
+</script>
+
+<style>
+    .carousel {
+        max-width: 600px;
+        margin: auto;
+        position: relative;
+    }
+    .slide {
+        display: none;
+    }    
+</style>

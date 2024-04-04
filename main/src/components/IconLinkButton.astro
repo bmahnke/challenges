@@ -1,0 +1,22 @@
+---
+
+import Icon from "./Icon.astro";
+interface Props {
+	icon: string;
+    text: string;
+    link: string;
+    iconClassList? : string;
+    buttonClassList? : string;
+    border?: boolean
+}
+
+const { icon, link, text, iconClassList, buttonClassList, border = true } = Astro.props;
+
+---
+
+<a href={link} target="_blank">
+    <button class=`flex space-x-2 ${buttonClassList ? buttonClassList : 'p-2'} ${ border ? 'border-primary-light hover:border-primary-dark' : 'border-none'}`>
+        <Icon icon={icon} myAttributes={{class: iconClassList}} />
+        <span class="sr-only">{text}</span>
+    </button>
+</a>

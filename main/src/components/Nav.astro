@@ -1,0 +1,21 @@
+---
+import IconLinkButton from "./IconLinkButton.astro";
+
+
+
+---
+
+<nav class="flex justify-between">
+    <section>
+        <a href="/" class="text-2xl text-gray-100"><span class="text-primary text-3xl">B</span>rett <span class="text-primary text-3xl">M</span>ahnke</a>
+    </section>
+    <section class="flex items-center space-x-4">
+        <a href="/about">About</a>
+        <a class="hidden" href="/projects">Projects</a>
+        <IconLinkButton icon="mail" buttonClassList="text-primary border-none hover:text-primary-lighter" iconClassList="w-6 h-6" text="Email Me" link="mailto:brett.mahnke@gmail.com" />
+        <IconLinkButton text="external github link" icon='skills/github-dark' buttonClassList="text-primary border-none hover:text-primary-lighter" iconClassList="w-6 h-6 " link="https://github.com/bmahnke" />
+        <IconLinkButton text="external linkedin link" icon='social-media/linkedin' buttonClassList="text-primary border-none hover:text-primary-lighter" iconClassList="w-6 h-6" link="https://www.linkedin.com/in/brett-mahnke/" />        
+        <IconLinkButton icon='coffee' text="buy me a coffee" border={false} iconClassList="w-6 h-6" link='https://www.buymeacoffee.com/brmahnke' />
+    </section>
+    
+</nav>
