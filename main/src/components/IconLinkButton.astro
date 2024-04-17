@@ -8,13 +8,14 @@ interface Props {
     iconClassList? : string;
     buttonClassList? : string;
     border?: boolean
+    anchorClassList?: string;
 }
 
-const { icon, link, text, iconClassList, buttonClassList, border = true } = Astro.props;
+const { icon, link, text, iconClassList, buttonClassList, anchorClassList = "", border = true } = Astro.props;
 
 ---
 
-<a href={link} target="_blank">
+<a href={link} class={anchorClassList} target="_blank">
     <button class=`flex space-x-2 ${buttonClassList ? buttonClassList : 'p-2'} ${ border ? 'border-primary-light hover:border-primary-dark' : 'border-none'}`>
         <Icon icon={icon} myAttributes={{class: iconClassList}} />
         <span class="sr-only">{text}</span>

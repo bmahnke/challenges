@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Skill from '../components/Skill.astro';
-import IconButtonLink from '../components/IconLinkButton.astro';
 import Carousel from '../components/Carousel.astro';
 
 const files = import.meta.glob<string>('/src/svg/skills/**/*.svg', {
@@ -17,11 +16,11 @@ const skillList = Object.keys(files).map(s => s.split('/').pop()).filter(s => !!
 <Layout title="Welcome to my website.">
 	
 	<div class="flex flex-col mt-10 sm:mt-14 md:mt-18 lg:mt-20">
-		<div class="grid grid-cols-1 md:grid-cols-2">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
 			<div class="flex flex-col">
-				<p class="text-md text-slate-500 ml-2">hello, and welcome! my name is</p>
+				<p class="text-md text-slate-500">hello, and welcome! my name is</p>
 				<h1 class="text-5xl mx-0 md:text-6xl lg:text-7xl xl:text-8xl">Brett Mahnke</h1>
-				<p class="text-xl md:text-2xl lg:text-3-xl ml-2 my-8">i am <b>full stack developer</b> with a focus on the backend, automation and scalability.</p>				
+				<p class="text-xl md:text-2xl lg:text-3-xl my-8">i am <b>full stack developer</b> with a focus on the backend, automation and scalability.</p>				
 			</div>
 			<div>
 				<div class="flex flex-col space-y-4">

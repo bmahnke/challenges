@@ -16,6 +16,14 @@
     }
 }
 
+.open-flex {
+    display: flex;
+}
+
+.closed {
+    display: none;
+}
+
 a {
     @apply text-primary hover:text-primary-dark dark:text-primary-light dark:hover:text-primary-lightest
 }

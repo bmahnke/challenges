@@ -7,12 +7,11 @@
 </div>
 
 <script>
-
-    function inRange(check:number, low : number, high: number) {
-        return check >= low && check <= high;
-    }
     // set index and transition delay
     let index = 15;
+    let toShow = 5;
+    const arry = [...Array(toShow)].map((_,i) => i);
+
     const transitionDelay = 2000;
 
     // get div containing the slides
@@ -29,40 +28,30 @@
 
     // show a specific slide
     function showSlide(slideNumber: number) {
-        console.log("showing slide: ", slideNumber)
+        console.log("showing slide: ", slideNumber);
+        let slideLength = slides.length;
 
         slides.forEach((slide, i) => {
-            slide.classList.toggle("order-last", false)
-            slide.style.display = slideNumber == i ? "flex" : "none";
+            slide.style.display = "none";
+            
+            arry.forEach(i => {
+                slide.classList.toggle(`order-${i + 1}`, false)
+            })
         });
 
-        // need to pull slides from the front of the array
-        if (((slideNumber + 2) - slides.length) > 0){
-            slides.slice(0, Math.abs((slideNumber + 2) - slides.length)).forEach((slide, idx) => {
-                console.log("showing slide: ", slide.getAttribute('data-skill'));
-                slide.style.display = "flex";
-                slide.classList.add("order-last")
-            })
-        } else {
-            slides.slice(slideNumber, slideNumber + 2).forEach((slide, idx) => {
-                console.log("showing slide: ", idx)
-                slide.style.display = "flex";
-            });
-        }
+        arry.forEach(idx => {
+            let t = index + idx;
+            if (t > (slideLength - 1)) {
+                t = t - slideLength
+            }
 
-        if ((slideNumber - 2) < 0) {
-            var b = (slideNumber - 2) + slides.length;
-            slides.slice(b, b + 2).forEach((slide, idx) => {
-                console.log("showing slide (order-last): ", idx);
-                slide.style.display = "flex";
-                slide.classList.add("order-last")
-            })
-        } else {
-            slides.slice(slideNumber - 2, slideNumber).forEach((slide, idx) => {
-                console.log("showing slide: ", idx);
-                slide.style.display = "flex";
-            })
-        }
+            const slide = slides[t];
+            if (slide) {
+                slide.style.display = `flex`;
+                slide.classList.toggle(`order-${idx + 1}`, true)
+            }
+        })
+
 
         // next index
         index++;
