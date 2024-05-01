@@ -9,6 +9,7 @@ import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import '../style/output.css';
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+import { GoogleAnalytics } from 'astro-google-analytics';
 ---
 
 <!doctype html>
@@ -21,6 +22,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<SpeedInsights/>
+		<GoogleAnalytics id="G-RW840P0W23" />
 	</head>
 	<body class="bg-gray-100 dark:bg-slate-950 text-gray-950 dark:text-gray-100 mx-auto py-4 px-4 sm:px-16 md:px-32 lg:px-44 xl:px-56 2xl:px-72">
 		<Nav />
