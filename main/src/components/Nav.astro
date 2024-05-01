@@ -24,7 +24,7 @@ import IconLinkButton from "./IconLinkButton.astro";
         </a>
 
         <div id="toggle-nav-menu" class="absolute closed flex flex-col items-center space-y-4 top-1 right-8 w-[100px] bg-slate-800">
-            <a href="/about" class="flex w-full justify-center hover:bg-slate-900 p-2">About</a>
+            <a class="hidden" href="/about" class="flex w-full justify-center hover:bg-slate-900 p-2">About</a>
             <a class="hidden" href="/projects">Projects</a>
             <IconLinkButton icon="mail" anchorClassList="flex w-full justify-center hover:bg-slate-900" buttonClassList="text-primary border-none hover:bg-slate-850  hover:text-primary-lighter" iconClassList="w-6 h-6" text="Email Me" link="mailto:brett.mahnke@gmail.com" />
             <IconLinkButton text="external github link" anchorClassList="flex w-full justify-center hover:bg-slate-900" icon='skills/github-dark' buttonClassList="text-primary border-none hover:text-primary-lighter" iconClassList="w-6 h-6 " link="https://github.com/bmahnke" />
